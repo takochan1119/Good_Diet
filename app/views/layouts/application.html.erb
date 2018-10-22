@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoodDiet</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+     <header>
+      
+        <div class="header-logo">
+          <%= link_to("GOOD DIET","/") %>
+          
+        </div>
+        <ul class="header-menus">
+        <li>
+          <%= link_to("メディア", "/media/show") %>
+        </li>
+        
+        <% if member_signed_in? %>
+          <li>
+            <%= link_to("イベント", "/events/show") %>
+          </li>
+          <li>
+            <%= link_to("ログアウト", destroy_member_session_path, :method => "delete") %>
+          </li>
+          <li>
+            <%= link_to(current_member.email, edit_member_registration_path) %>
+          </li>
+        <% else %>
+           <li>
+            <%= link_to("新規登録", "/members/sign_up") %>
+          </li>
+          <li>
+            <%= link_to("ログイン", "/members/sign_in") %>
+          </li>
+        <% end %>
+      </ul>
+     
+    </header>
+    
+  <body>
+   
+    <%= yield %>
+  </body>
+</html>
+
+
+    
+   
